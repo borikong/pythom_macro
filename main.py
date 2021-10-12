@@ -3,7 +3,7 @@ import keyboard
 import time
 import sys
 from PyQt5.QtWidgets import QWidget,QDesktopWidget,qApp,QApplication
-from PyQt5.QtWidgets import QMessageBox, QStatusBar,QPushButton,QLineEdit,QGroupBox,QTextEdit,QLabel,QHBoxLayout,QVBoxLayout,QGridLayout
+from PyQt5.QtWidgets import QComboBox, QStatusBar,QPushButton,QLineEdit,QGroupBox,QTextEdit,QLabel,QHBoxLayout,QVBoxLayout,QGridLayout
 
 class MyApp(QWidget):
 
@@ -28,6 +28,7 @@ class MyApp(QWidget):
         self.pos = []
         self.n = 0
 
+        ##Button
         start_macro_btn = QPushButton('매크로 시작')
         pos1_btn = QPushButton('pos1')
         pos2_btn = QPushButton('pos2')
@@ -36,7 +37,9 @@ class MyApp(QWidget):
         pos5_btn = QPushButton('pos5')
         pos6_btn = QPushButton('pos6')
         pos7_btn = QPushButton('pos7')
+        scroll_btn=QPushButton('스크롤')
 
+        ##Button Connect
         pos1_btn.clicked.connect(self.get_pos1)
         pos2_btn.clicked.connect(self.get_pos2)
         pos3_btn.clicked.connect(self.get_pos3)
@@ -45,7 +48,9 @@ class MyApp(QWidget):
         pos6_btn.clicked.connect(self.get_pos6)
         pos7_btn.clicked.connect(self.get_pos7)
         start_macro_btn.clicked.connect(self.start_macro)
+        scroll_btn.clicked.connect(self.scr)
 
+        ##QLineEdit
         self.pos1_qle = QLineEdit()
         self.pos2_qle = QLineEdit()
         self.pos3_qle=QLineEdit()
@@ -62,14 +67,16 @@ class MyApp(QWidget):
         self.pos6_qle.setDisabled(True)
         self.pos7_qle.setDisabled(True)
 
+        ##QCombobox
+        self.combo1=QComboBox()
 
         groupbox1=QGroupBox("pos1 선택")
         groupbox2 = QGroupBox("pos2 선택")
         groupbox3 = QGroupBox("pos3 선택")
-        groupbox4 = QGroupBox("pos3 선택")
-        groupbox5 = QGroupBox("pos3 선택")
-        groupbox6 = QGroupBox("pos3 선택")
-        groupbox7 = QGroupBox("pos3 선택")
+        groupbox4 = QGroupBox("pos4 선택")
+        groupbox5 = QGroupBox("pos5 선택")
+        groupbox6 = QGroupBox("pos6 선택")
+        groupbox7 = QGroupBox("pos7 선택")
 
 
         hbox1 = QHBoxLayout()
@@ -82,6 +89,7 @@ class MyApp(QWidget):
 
         hbox1.addWidget(self.pos1_qle)
         hbox1.addWidget(pos1_btn)
+        hbox1.addWidget(scroll_btn)
         hbox2.addWidget(self.pos2_qle)
         hbox2.addWidget(pos2_btn)
         hbox3.addWidget(self.pos3_qle)
@@ -128,8 +136,9 @@ class MyApp(QWidget):
                 self.pos[local_n].append(x)
                 self.pos[local_n].append(y)
                 print(self.pos)
-                time.sleep(1)
+                time.sleep(0.2)
                 break
+
 
         if local_n==0:
             self.pos1_qle.setText("(" + str(self.pos[local_n][0]) + "," + str(self.pos[local_n][1]) + ")")
@@ -172,6 +181,10 @@ class MyApp(QWidget):
         y=1
         for i in range(len(self.pos)):
             pa.click(x=self.pos[i][x], y=self.pos[i][y])
+            pa.scroll(20)
+
+    def scr(self):
+        pa.scroll(20)
 
 if __name__ == '__main__':
    app = QApplication(sys.argv)
