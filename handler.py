@@ -5,6 +5,7 @@ import voice as vc
 import time, os
 import tkinter.filedialog
 from tkinter import Tk
+import shutil
 
 class MyApp(QWidget):
 
@@ -21,7 +22,7 @@ class MyApp(QWidget):
     def initUI(self):
 
         ##변수 세팅
-        self.download_path=r"C:\Users\admin\Downloads"
+        self.download_path=r"C:\Users\김다영.WISEDAYEONG\Downloads"
         file_list=os.listdir(self.download_path)
         print(file_list)
 
@@ -77,7 +78,7 @@ class MyApp(QWidget):
         self.show()
 
     def voice_start(self):
-        audio_path = r"C:\python_project\macro\record_file\temp.wav"
+        audio_path = r"C:\pythonworkspace\python macro\pythom_macro\record_file\temp.wav"
         vc.set()
         vc.start()
         time.sleep(3)
@@ -101,10 +102,13 @@ class MyApp(QWidget):
 
     def change_dir(self):
         print(self.combo.currentText())
-        print(self.edit_fname_qle.text())
+        print(self.ch_dir_qle.text())
+        print(self.download_path+"/"+self.combo.currentText())
+        print(self.ch_dir_qle.text()+"/"+self.combo.currentText())
         # new_dir=self.combo.currentText()
         # new_dir=new_dir.split("/")
-        os.rename(self.download_path+"/"+self.combo.currentText(),self.ch_dir_qle.text()+"/"+self.combo.currentText())
+        #os.rename(self.download_path+"/"+self.combo.currentText(),self.ch_dir_qle.text()+"/"+self.combo.currentText())
+        shutil.move(self.download_path+"/"+self.combo.currentText(),self.ch_dir_qle.text()+"/"+self.combo.currentText())
         self.add_combo()
 
     def get_save_root(self):
