@@ -22,7 +22,8 @@ class MyApp(QWidget):
     def initUI(self):
 
         ##변수 세팅
-        self.download_path=r"C:\Users\김다영.WISEDAYEONG\Downloads"
+        self.download_path=r"C:"
+        self.audio_path = r"C:\pythonworkspace\python macro\pythom_macro\record_file\temp.wav"
         file_list=os.listdir(self.download_path)
         print(file_list)
 
@@ -78,12 +79,11 @@ class MyApp(QWidget):
         self.show()
 
     def voice_start(self):
-        audio_path = r"C:\pythonworkspace\python macro\pythom_macro\record_file\temp.wav"
         vc.set()
         vc.start()
         time.sleep(3)
         vc.stop()
-        vc.command(vc.recognize_text(audio_path))
+        vc.command(vc.recognize_text(self.audio_path))
 
     def change_file_name(self):
         print(self.combo.currentText())

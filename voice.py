@@ -52,12 +52,12 @@ def recognize_text(audio_path):
     return text
 
 def command(text):
-    if "프로젝트" in text:
-        print("팀프로젝트")
+    if "어쩌구1" in text:
+        print("어쩌구1")
         if "명단" in text:
-            path = os.path.realpath(r'Z:\!2021년 R-WeSET\@프로그램\21년 대학생 프로그램\6. ICT 팀프로젝트\2021 ICT 팀프로젝트_참가자 명단_최종수정.xlsx')
+            path = os.path.realpath(r'C:\python_project\어쩌구2\명단.xlsx')
         else:
-            path = os.path.realpath(r'Z:\!2021년 R-WeSET\@프로그램\21년 대학생 프로그램\6. ICT 팀프로젝트')
+            path = os.path.realpath(r'C:\python_project\어쩌구2\명단.xlsx')
     elif "어쩌구2" in text:
         print("어쩌구2")
         if "명단" in text:
